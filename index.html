@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library of Congress API Search</title>
+  </head>
+  <body>
+    <header>
+      <h1>Library of Congress API Search</h1>
+    </header>
+    <main>
+      <form id="search-form">
+        <label for="query">Search Query:</label>
+        <input type="text" id="query" name="q" required />
+
+        <label for="format">Format:</label>
+        <select id="format" name="format">
+          <option value="">Select a format...</option>
+          <option value="books">Books</option>
+          <option value="photos">Photos</option>
+          <option value="maps">Maps</option>
+          <option value="manuscripts">Manuscripts</option>
+          <option value="music">Music</option>
+          <option value="newspapers">Newspapers</option>
+          <option value="periodicals">Periodicals</option>
+          <option value="videos">Videos</option>
+        </select>
+
+        <button type="submit">Search</button>
+      </form>
+    </main>
+    <script>
+      const form = document.querySelector('#search-form');
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const query = document.querySelector('#query').value;
+        const format = document.querySelector('#format').value;
+        const url = format ? `/search-results.html?q=${query}&format=${format}` : `/search-results.html?q=${query}&format=`;
+        location.replace(url);
+      });
+    </script>
+  </body>
+</html>
